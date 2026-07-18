@@ -4,9 +4,17 @@ An interactive cartoon refrigerator guarded by one very small, very serious nigh
 
 Open the refrigerator by clicking, dragging, touching, or focusing its handle and pressing <kbd>Space</kbd> or <kbd>Enter</kbd>. Every inspection catches the guardian, Crumb, attempting a different emergency snack-protection maneuver.
 
+## Project status
+
+- **Version:** 1.0.0
+- **Repository:** [SUDARSHANCHAUDHARI/FridgePatrol](https://github.com/SUDARSHANCHAUDHARI/FridgePatrol)
+- **Visibility:** Private until public-release approval
+- **Production checks:** Passing with `pnpm verify`
+- **Public deployment:** Not enabled yet
+
 ## Live demo
 
-Once GitHub Pages is enabled, the site will be available at:
+The public demo is intentionally offline while the repository remains private. Once GitHub Pages is approved and enabled, the site will be available at:
 
 ```text
 https://sudarshanchaudhari.github.io/FridgePatrol/
@@ -38,6 +46,21 @@ https://sudarshanchaudhari.github.io/FridgePatrol/
 - Visible keyboard focus, live status announcements, semantic controls, and descriptive SVG text
 - Reduced-motion support through `prefers-reduced-motion`
 
+## Technology
+
+| Area | Implementation |
+| --- | --- |
+| Structure | Semantic HTML5 |
+| Illustration | Inline SVG and CSS-drawn scenery |
+| Styling | Layered CSS, custom properties, responsive media queries, and 3D transforms |
+| Interaction | Vanilla JavaScript and Pointer Events |
+| Audio | Synthesized locally with the Web Audio API |
+| Persistence | Browser `localStorage` for the opening count and sound preference |
+| Hosting | Dependency-free static files suitable for GitHub Pages |
+| Verification | Node.js built-in APIs through `pnpm verify` |
+
+The deployed experience has no package dependencies, framework runtime, build output, external font, analytics service, or network request.
+
 ## Project structure
 
 ```text
@@ -59,6 +82,28 @@ FridgePatrol/
 
 No packages, bundler, framework, or build command are required.
 
+### Prerequisites
+
+- A current version of Chrome, Edge, Firefox, or Safari
+- Python 3, or another local static-file server
+- Node.js 18+ and pnpm only when running the production verifier
+
+### Clone and start
+
+The repository is private, so cloning requires access through the authenticated GitHub account:
+
+```bash
+git clone https://github.com/SUDARSHANCHAUDHARI/FridgePatrol.git
+cd FridgePatrol
+pnpm serve
+```
+
+Then open [http://localhost:8080](http://localhost:8080).
+
+No dependency installation is required. The `pnpm serve` command runs Python's built-in static server.
+
+### Alternative command
+
 For the most reliable local behavior, serve the directory over HTTP:
 
 ```bash
@@ -78,6 +123,12 @@ pnpm verify
 ```
 
 The verifier uses Node.js built-ins and downloads nothing. It checks JavaScript syntax, required files, reaction coverage, local asset references, unique DOM IDs, ARIA targets, security-sensitive patterns, responsive and reduced-motion support, documentation, and ignore rules.
+
+Successful output ends with:
+
+```text
+✓ JavaScript syntax, security, accessibility, responsive, and documentation checks
+```
 
 ## Controls
 
@@ -114,6 +165,15 @@ All paths are relative and the project has no server-side dependencies, so it ca
 - When reduced motion is requested, transitions collapse, ambient mist is removed, and all game states remain available.
 - Audio never starts automatically; the first sound is initiated only by user interaction.
 
+## Privacy and security
+
+- FridgePatrol has no accounts, forms, advertising, analytics, tracking, or server-side data collection.
+- The opening count and sound preference remain on the device in `localStorage` under the `fridgePatrol.*` keys.
+- Resetting the game clears the stored opening count; the sound preference remains until changed by the user or cleared through browser storage settings.
+- A document Content Security Policy restricts runtime assets to the site itself and disables outbound connections, plugins, forms, media downloads, and workers.
+- Runtime text is created with safe DOM APIs rather than HTML injection.
+- The project contains no third-party runtime dependencies or remote assets.
+
 ## Browser support
 
 FridgePatrol targets current versions of Chrome, Edge, Firefox, and Safari. The interaction uses Pointer Events, CSS custom properties, SVG, `localStorage`, and the Web Audio API.
@@ -124,6 +184,16 @@ If Web Audio is unavailable, the visual experience continues without sound. If s
 
 The central color and type tokens are declared at the top of `styles.css`. Reaction definitions and their status messages live in the `reactions` array in `script.js`. The secret milestone is controlled in `runRandomReaction()`.
 
+## Author
+
+FridgePatrol was created and is maintained by **Sudarshan Chaudhari**.
+
+- **Studio:** SudarshanTechLabs
+- **GitHub:** [@SUDARSHANCHAUDHARI](https://github.com/SUDARSHANCHAUDHARI)
+- **Developer email:** [sunny.sudarshan@gmail.com](mailto:sunny.sudarshan@gmail.com)
+- **Business and legal email:** [sudarshantechlabs@gmail.com](mailto:sudarshantechlabs@gmail.com)
+- **Location:** Bangkok, Thailand
+
 ## License
 
-FridgePatrol is available under the [MIT License](LICENSE).
+FridgePatrol is copyright © 2026 SudarshanTechLabs and is available under the [MIT License](LICENSE).
