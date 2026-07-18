@@ -1,0 +1,31 @@
+.DS_Store
+Thumbs.db
+*.log
+
+# Editors and local tooling
+.idea/
+.vscode/
+
+# Dependencies, caches, test output, and generated builds
+node_modules/
+.pnpm-store/
+.cache/
+coverage/
+dist/
+.vercel/
+
+# Environment and local configuration
+.env
+.env.*
+!.env.example
+local.properties
+secure.properties
+keystore.properties
+auth.json
+
+# Keys and signing material
+*.key
+*.pem
+*.p12
+*.jks
+*.keystore

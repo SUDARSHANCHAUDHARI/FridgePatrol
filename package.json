@@ -1,0 +1,20 @@
+{
+  "name": "fridgepatrol",
+  "version": "1.0.0",
+  "private": true,
+  "description": "An interactive cartoon refrigerator protected by a tiny snack guardian.",
+  "scripts": {
+    "serve": "python3 -m http.server 8080",
+    "verify": "node scripts/verify.mjs"
+  },
+  "keywords": [
+    "vanilla-javascript",
+    "svg",
+    "interactive-art",
+    "github-pages"
+  ],
+  "license": "MIT",
+  "engines": {
+    "node": ">=18"
+  }
+}

@@ -1,0 +1,293 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="FridgePatrol — a tiny guardian, a suspicious refrigerator, and snacks with secrets."
+    />
+    <meta name="theme-color" content="#15213a" />
+    <meta name="color-scheme" content="dark" />
+    <meta name="referrer" content="strict-origin-when-cross-origin" />
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; connect-src 'none'; font-src 'self'; media-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'; worker-src 'none'"
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="FridgePatrol" />
+    <meta
+      property="og:description"
+      content="Open a suspicious cartoon refrigerator and catch its tiny snack guardian in the act."
+    />
+    <meta name="twitter:card" content="summary" />
+    <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="styles.css" />
+    <title>FridgePatrol — Midnight Snack Security</title>
+  </head>
+  <body>
+    <main class="app-shell">
+      <header class="masthead">
+        <div class="brand-lockup">
+          <span class="eyebrow">Night shift · Kitchen unit 07</span>
+          <h1>Fridge<span>Patrol</span></h1>
+          <p>Somebody small is taking snack security very seriously.</p>
+        </div>
+
+        <div class="controls" aria-label="Game controls">
+          <button class="control-button" id="sound-toggle" type="button" aria-pressed="false">
+            <svg aria-hidden="true" viewBox="0 0 24 24">
+              <path d="M5 9v6h4l5 4V5L9 9H5Z" />
+              <path class="sound-wave" d="M17 8.5c1.5 1.8 1.5 5.2 0 7" />
+              <path class="sound-off-mark" d="m16.5 9 5 6" />
+            </svg>
+            <span>Sound on</span>
+          </button>
+          <button class="control-button" id="reset-button" type="button">
+            <svg aria-hidden="true" viewBox="0 0 24 24">
+              <path d="M19 8a7 7 0 1 0 1 7" />
+              <path d="M19 3v5h-5" />
+            </svg>
+            <span>Reset</span>
+          </button>
+        </div>
+      </header>
+
+      <section class="case-file" aria-label="FridgePatrol interactive scene">
+        <div class="case-status">
+          <div>
+            <span class="case-label">Door openings</span>
+            <strong id="opening-count">00</strong>
+          </div>
+          <p id="status-message" aria-live="polite">The kitchen is quiet. Suspiciously quiet.</p>
+          <span class="status-light" aria-hidden="true"></span>
+        </div>
+
+        <div class="kitchen" id="kitchen">
+          <div class="wall-glow" aria-hidden="true"></div>
+          <div class="window" aria-hidden="true">
+            <div class="moon"></div>
+            <span class="star star-one"></span>
+            <span class="star star-two"></span>
+            <span class="star star-three"></span>
+            <div class="window-sill"></div>
+          </div>
+
+          <div class="kitchen-note" aria-hidden="true">
+            <span>REMEMBER</span>
+            <strong>Do not trust<br />the cookie.</strong>
+            <i></i>
+          </div>
+
+          <div class="countertop" aria-hidden="true">
+            <div class="plant-pot"><span></span><span></span><span></span></div>
+            <div class="mug">NIGHT<br />SHIFT</div>
+          </div>
+
+          <div class="fridge-zone" id="fridge-zone">
+            <div class="fridge-shadow" aria-hidden="true"></div>
+            <div class="fridge-cabinet">
+              <div class="cabinet-edge" aria-hidden="true"></div>
+              <div class="fridge-interior" id="fridge-interior">
+                <div class="fridge-light" aria-hidden="true"></div>
+                <div class="interior-vignette" aria-hidden="true"></div>
+
+                <svg
+                  class="fridge-scene"
+                  viewBox="0 0 360 520"
+                  role="img"
+                  aria-labelledby="fridge-scene-title fridge-scene-description"
+                >
+                  <title id="fridge-scene-title">The guarded contents of the refrigerator</title>
+                  <desc id="fridge-scene-description">
+                    Shelves of cartoon food watched by a tiny caped guardian named Crumb.
+                  </desc>
+
+                  <defs>
+                    <linearGradient id="shelf-edge" x1="0" x2="0" y1="0" y2="1">
+                      <stop offset="0" stop-color="#e8fff8" />
+                      <stop offset="1" stop-color="#96c7c7" />
+                    </linearGradient>
+                    <filter id="soft-shadow" x="-30%" y="-30%" width="160%" height="160%">
+                      <feDropShadow dx="0" dy="4" stdDeviation="3" flood-color="#17213e" flood-opacity=".28" />
+                    </filter>
+                  </defs>
+
+                  <g class="shelves" aria-hidden="true">
+                    <path d="M23 173h314l-10 16H33Z" fill="url(#shelf-edge)" />
+                    <path d="M23 321h314l-10 16H33Z" fill="url(#shelf-edge)" />
+                    <path d="M24 458h312v15H24Z" fill="url(#shelf-edge)" />
+                    <path d="M25 337h310v119H25Z" fill="#c7efeb" opacity=".14" />
+                  </g>
+
+                  <g id="food-layer" filter="url(#soft-shadow)">
+                    <g class="food-item food-milk" data-food="milk" style="--x: 48px; --y: 79px">
+                      <g class="food-original">
+                        <path d="M3 20 16 1h30l13 19v70H3Z" fill="#f8faf2" stroke="#26375a" stroke-width="4" />
+                        <path d="M16 1h30v19H3Z" fill="#8dcfd0" stroke="#26375a" stroke-width="4" />
+                        <rect x="12" y="35" width="38" height="30" rx="4" fill="#f36f61" />
+                        <path d="M20 47c8-8 14 8 22 0" fill="none" stroke="#fff5d6" stroke-width="4" stroke-linecap="round" />
+                      </g>
+                      <g class="broccoli-alt">
+                        <path d="M25 49v38M39 50v37" stroke="#6ca85d" stroke-width="12" stroke-linecap="round" />
+                        <circle cx="17" cy="37" r="15" fill="#4e9b61" /><circle cx="39" cy="28" r="18" fill="#62b46b" /><circle cx="54" cy="42" r="15" fill="#438b58" />
+                      </g>
+                    </g>
+
+                    <g class="food-item food-cheese" data-food="cheese" style="--x: 144px; --y: 113px">
+                      <g class="food-original">
+                        <path d="M2 50 20 8l72 42Z" fill="#ffc85b" stroke="#26375a" stroke-width="4" stroke-linejoin="round" />
+                        <circle cx="32" cy="37" r="7" fill="#e59b3a" /><circle cx="56" cy="42" r="5" fill="#e59b3a" /><circle cx="47" cy="25" r="4" fill="#e59b3a" />
+                      </g>
+                      <g class="broccoli-alt">
+                        <path d="M43 24v33" stroke="#6ca85d" stroke-width="11" stroke-linecap="round" />
+                        <circle cx="25" cy="20" r="14" fill="#4e9b61" /><circle cx="45" cy="13" r="17" fill="#62b46b" /><circle cx="62" cy="23" r="14" fill="#438b58" />
+                      </g>
+                    </g>
+
+                    <g class="food-item food-apple" data-food="apple" style="--x: 267px; --y: 116px">
+                      <g class="food-original">
+                        <path d="M31 14c7-11 17-9 20-8" fill="none" stroke="#293858" stroke-width="5" stroke-linecap="round" />
+                        <path d="M38 16c25-11 39 10 32 34-8 28-25 30-35 18C24 80 7 78 1 50-4 25 13 5 38 16Z" fill="#f0645b" stroke="#26375a" stroke-width="4" />
+                        <path d="M43 11c4-10 14-10 22-8-4 9-11 15-22 8Z" fill="#6cab68" stroke="#26375a" stroke-width="3" />
+                      </g>
+                      <g class="broccoli-alt">
+                        <path d="M36 34v35" stroke="#6ca85d" stroke-width="12" stroke-linecap="round" />
+                        <circle cx="19" cy="29" r="14" fill="#4e9b61" /><circle cx="39" cy="19" r="17" fill="#62b46b" /><circle cx="57" cy="31" r="14" fill="#438b58" />
+                      </g>
+                    </g>
+
+                    <g class="food-item food-eggs" data-food="eggs" style="--x: 38px; --y: 270px">
+                      <g class="food-original">
+                        <path d="M0 39h98l-9 37H9Z" fill="#8ebec0" stroke="#26375a" stroke-width="4" />
+                        <ellipse cx="20" cy="33" rx="15" ry="25" fill="#fff5d9" stroke="#26375a" stroke-width="3" />
+                        <ellipse cx="49" cy="29" rx="15" ry="27" fill="#fff9e7" stroke="#26375a" stroke-width="3" />
+                        <ellipse cx="78" cy="34" rx="15" ry="24" fill="#fff5d9" stroke="#26375a" stroke-width="3" />
+                      </g>
+                      <g class="broccoli-alt">
+                        <path d="M48 39v36" stroke="#6ca85d" stroke-width="13" stroke-linecap="round" />
+                        <circle cx="27" cy="31" r="16" fill="#4e9b61" /><circle cx="49" cy="19" r="19" fill="#62b46b" /><circle cx="70" cy="31" r="16" fill="#438b58" />
+                      </g>
+                    </g>
+
+                    <g class="food-item food-juice" data-food="juice" style="--x: 165px; --y: 247px">
+                      <g class="food-original">
+                        <rect x="2" y="18" width="61" height="78" rx="7" fill="#ef8065" stroke="#26375a" stroke-width="4" />
+                        <path d="M10 18 20 2h34l9 16Z" fill="#f5b45f" stroke="#26375a" stroke-width="4" />
+                        <path d="m41 3 8-16" stroke="#f3eee1" stroke-width="5" stroke-linecap="round" />
+                        <circle cx="33" cy="57" r="15" fill="#ffc761" /><path d="M26 54c4-4 10-4 14 0" fill="none" stroke="#f06a5d" stroke-width="4" stroke-linecap="round" />
+                      </g>
+                      <g class="broccoli-alt">
+                        <path d="M32 52v40" stroke="#6ca85d" stroke-width="12" stroke-linecap="round" />
+                        <circle cx="15" cy="43" r="15" fill="#4e9b61" /><circle cx="34" cy="30" r="18" fill="#62b46b" /><circle cx="52" cy="44" r="15" fill="#438b58" />
+                      </g>
+                    </g>
+
+                    <g class="food-item food-cookie" data-food="cookie" style="--x: 260px; --y: 276px">
+                      <g class="food-original">
+                        <circle cx="38" cy="38" r="35" fill="#c9814d" stroke="#26375a" stroke-width="4" />
+                        <circle cx="20" cy="23" r="5" fill="#704831" /><circle cx="51" cy="18" r="5" fill="#704831" /><circle cx="45" cy="48" r="6" fill="#704831" /><circle cx="20" cy="54" r="4" fill="#704831" />
+                        <circle cx="26" cy="34" r="2.5" fill="#26375a" /><circle cx="48" cy="34" r="2.5" fill="#26375a" />
+                        <path d="M28 44c6 5 12 5 18 0" fill="none" stroke="#26375a" stroke-width="3" stroke-linecap="round" />
+                      </g>
+                      <g class="broccoli-alt">
+                        <path d="M37 42v32" stroke="#6ca85d" stroke-width="12" stroke-linecap="round" />
+                        <circle cx="20" cy="34" r="15" fill="#4e9b61" /><circle cx="38" cy="22" r="18" fill="#62b46b" /><circle cx="55" cy="35" r="15" fill="#438b58" />
+                      </g>
+                    </g>
+                  </g>
+
+                  <g class="guard" id="guard" style="--guard-x: 139px; --guard-y: 368px" filter="url(#soft-shadow)">
+                    <path class="guard-cape" d="M18 49C-2 76-6 104 1 125l40-11 32 11c8-24 0-52-17-75Z" fill="#e85458" stroke="#26375a" stroke-width="4" />
+                    <path class="guard-body" d="M15 55c0-26 15-42 39-42s39 16 39 42v58H15Z" fill="#7bcdb2" stroke="#26375a" stroke-width="4" />
+                    <path d="M28 16C31-5 68-7 79 17 62 8 45 8 28 16Z" fill="#26375a" />
+                    <path d="M34 11 52-1l17 12" fill="none" stroke="#f4c257" stroke-width="5" stroke-linejoin="round" />
+                    <ellipse cx="39" cy="49" rx="9" ry="12" fill="#fff" /><ellipse cx="70" cy="49" rx="9" ry="12" fill="#fff" />
+                    <circle class="guard-pupil left" cx="42" cy="51" r="4" fill="#26375a" /><circle class="guard-pupil right" cx="67" cy="51" r="4" fill="#26375a" />
+                    <path class="guard-mouth" d="M45 72c7 5 13 5 20 0" fill="none" stroke="#26375a" stroke-width="4" stroke-linecap="round" />
+                    <path class="guard-arm left-arm" d="M17 71 2 91" fill="none" stroke="#26375a" stroke-width="8" stroke-linecap="round" />
+                    <path class="guard-arm right-arm" d="m91 71 16 18" fill="none" stroke="#26375a" stroke-width="8" stroke-linecap="round" />
+                    <path d="M25 114v10M80 114v10" stroke="#26375a" stroke-width="7" stroke-linecap="round" />
+                    <path class="disguise-leaf" d="M53 17C39 1 26 14 29 25c10 2 18-1 24-8Zm1 0c13-17 28-4 24 8-10 2-18-1-24-8Z" fill="#61aa65" stroke="#26375a" stroke-width="3" />
+                    <path class="freeze-drop" d="M98 28c11 15-10 21-4 0Z" fill="#92d8e6" stroke="#26375a" stroke-width="2" />
+                  </g>
+
+                  <g class="inside-hand" id="inside-hand" aria-hidden="true">
+                    <path d="M335 254c-65-3-97 5-118 24l13 32c26-13 60-14 105-10Z" fill="#7bcdb2" stroke="#26375a" stroke-width="5" />
+                    <path d="m222 270-32-12m35 22-40 2m44 10-34 20" fill="none" stroke="#26375a" stroke-width="9" stroke-linecap="round" />
+                  </g>
+
+                  <g class="nothing-sign" id="nothing-sign" aria-hidden="true">
+                    <path d="M86 194h190v89H86Z" fill="#fff1bf" stroke="#26375a" stroke-width="5" />
+                    <path d="M106 194 87 160m169 34 18-34" stroke="#26375a" stroke-width="5" />
+                    <text x="181" y="230" text-anchor="middle" fill="#26375a">NOTHING TO</text>
+                    <text x="181" y="258" text-anchor="middle" fill="#e85458">SEE HERE</text>
+                  </g>
+
+                  <g class="rare-banner" id="rare-banner" aria-hidden="true">
+                    <path d="M33 197h294v104H33l20-52Z" fill="#f4c257" stroke="#26375a" stroke-width="5" />
+                    <text x="181" y="237" text-anchor="middle" fill="#26375a">PATROL LEVEL 10</text>
+                    <text x="181" y="274" text-anchor="middle" fill="#e85458">FRIDGE SECURED!</text>
+                  </g>
+                </svg>
+
+                <div class="mist" aria-hidden="true">
+                  <span></span><span></span><span></span><span></span>
+                </div>
+              </div>
+
+              <div class="fridge-door" id="fridge-door">
+                <div class="door-face" aria-hidden="true">
+                  <svg viewBox="0 0 360 520" focusable="false">
+                    <defs>
+                      <linearGradient id="door-enamel" x1="0" x2="1">
+                        <stop offset="0" stop-color="#bcebdc" />
+                        <stop offset=".7" stop-color="#89cfba" />
+                        <stop offset="1" stop-color="#69ad9e" />
+                      </linearGradient>
+                    </defs>
+                    <rect x="4" y="4" width="352" height="512" rx="35" fill="url(#door-enamel)" stroke="#26375a" stroke-width="8" />
+                    <path d="M24 313h311" stroke="#26375a" stroke-width="7" opacity=".7" />
+                    <path d="M34 27h292" stroke="#fff" stroke-width="9" stroke-linecap="round" opacity=".28" />
+                    <g class="door-magnets">
+                      <path d="M88 84c-23-24-55 4-30 31l30 30 30-30c25-27-7-55-30-31Z" fill="#ef685e" stroke="#26375a" stroke-width="4" />
+                      <path d="M187 63h105v69H187Z" fill="#fff2c1" stroke="#26375a" stroke-width="4" transform="rotate(4 239 98)" />
+                      <text x="239" y="88" text-anchor="middle" fill="#26375a" transform="rotate(4 239 98)">DO NOT OPEN</text>
+                      <path d="M204 106c21-14 47-12 70 0" fill="none" stroke="#e85458" stroke-width="5" stroke-linecap="round" transform="rotate(4 239 98)" />
+                      <circle cx="206" cy="174" r="22" fill="#f4c257" stroke="#26375a" stroke-width="4" />
+                      <path d="m195 174 8 8 15-18" fill="none" stroke="#26375a" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" />
+                    </g>
+                    <text x="46" y="475" fill="#26375a" class="door-brand">FROST-O-MATIC</text>
+                  </svg>
+                </div>
+
+                <button
+                  class="fridge-handle"
+                  id="fridge-handle"
+                  type="button"
+                  aria-label="Open refrigerator"
+                  aria-expanded="false"
+                  aria-controls="fridge-interior"
+                >
+                  <span class="handle-grip" aria-hidden="true"></span>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <div class="floor-line" aria-hidden="true"></div>
+        </div>
+
+        <div class="instructions">
+          <p><span aria-hidden="true">↤</span> Click, pull, or use <kbd>Space</kbd> on the handle.</p>
+          <p class="attempt-hint" id="attempt-hint">Crumb has survived <strong>0</strong> inspections.</p>
+        </div>
+      </section>
+    </main>
+
+    <noscript>
+      <p class="noscript-message">FridgePatrol needs JavaScript to catch its tiny guardian in the act.</p>
+    </noscript>
+    <script src="script.js" defer></script>
+  </body>
+</html>
