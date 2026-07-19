@@ -65,9 +65,12 @@ async function verify() {
     assert(reactions.includes(reaction), `Missing reaction: ${reaction}`);
   });
 
+  const galleryHref = "../TinyChaos/";
+  assert(html.includes(`href="${galleryHref}"`), "Missing TinyChaos gallery navigation");
+
   const localAssets = matches(html, /(?:href|src)="([^"#]+)"/g)
     .map((match) => match[1])
-    .filter((value) => !value.startsWith("http"));
+    .filter((value) => !value.startsWith("http") && value !== galleryHref);
   await Promise.all(localAssets.map((asset) => access(asset)));
 
   const externalRuntimeAssets = matches(

@@ -24,35 +24,39 @@
 
 @layer base {
   :root {
-    --night: #10182c;
-    --night-soft: #17213e;
-    --ink: #26375a;
+    --ink: #15152a;
+    --paper: #fff5df;
+    --coral: #ff5d5d;
+    --blue: #4f7cff;
+    --butter: #ffd166;
+    --mint: #58d6a9;
+    --lilac: #b695ff;
+    --night: var(--ink);
+    --night-soft: #24233f;
     --tile: #223252;
     --tile-line: #2d4165;
-    --mint: #91d7c0;
-    --mint-dark: #63aa99;
-    --tomato: #ef685e;
-    --butter: #f4c257;
-    --cream: #fff2c1;
+    --mint-dark: #2f8068;
+    --tomato: var(--coral);
+    --cream: var(--paper);
     --ice: #c7f3e9;
-    --white: #fffdf4;
-    --display: "Arial Rounded MT Bold", "Trebuchet MS", sans-serif;
-    --body: "Trebuchet MS", Verdana, sans-serif;
+    --white: var(--paper);
+    --display: Impact, Haettenschweiler, "Arial Narrow Bold", "Franklin Gothic Condensed", sans-serif;
+    --body: Inter, ui-rounded, "SF Pro Rounded", "Segoe UI", sans-serif;
     --utility: ui-monospace, "SFMono-Regular", Consolas, monospace;
     --door-angle: 0deg;
     --fridge-width: clamp(248px, 31vw, 360px);
-    --outline: 3px solid var(--butter);
+    --outline: 4px solid var(--blue);
   }
 
   body {
-    min-width: 320px;
+    min-width: 0;
     min-height: 100vh;
     color: var(--white);
     background:
       radial-gradient(circle at 50% -20%, #2d4369 0%, transparent 44%),
       var(--night);
     font-family: var(--body);
-    overflow-x: hidden;
+    overflow-x: clip;
   }
 
   button {
@@ -122,10 +126,11 @@
     gap: 8px;
     min-height: 44px;
     padding: 10px 13px;
-    border: 1px solid #3b4c70;
+    color: var(--ink);
+    border: 3px solid var(--ink);
     border-radius: 12px;
-    background: #1a2743;
-    box-shadow: inset 0 1px rgb(255 255 255 / 7%);
+    background: var(--paper);
+    box-shadow: 4px 4px 0 var(--blue);
     cursor: pointer;
     transition: border-color 160ms ease, background 160ms ease, transform 160ms ease;
   }
@@ -159,17 +164,21 @@
   }
 
   .control-button:hover {
-    border-color: var(--mint);
-    background: #223352;
+    background: var(--butter);
     transform: translateY(-1px);
+  }
+
+  .control-button:active {
+    box-shadow: 1px 1px 0 var(--ink);
+    transform: translateY(2px);
   }
 
   .case-file {
     overflow: hidden;
-    border: 1px solid #3b4c70;
+    border: 3px solid var(--ink);
     border-radius: 22px;
     background: #16213a;
-    box-shadow: 0 28px 90px rgb(2 8 22 / 48%);
+    box-shadow: 8px 8px 0 var(--blue);
   }
 
   .case-status {
@@ -224,6 +233,29 @@
     color: #aab9d3;
     background: #1a2743;
     font-size: 0.78rem;
+  }
+
+  .tinychaos-credit {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px 18px;
+    margin-top: 24px;
+    padding: 12px 16px;
+    border: 3px solid var(--ink);
+    border-radius: 12px;
+    color: var(--ink);
+    background: var(--paper);
+    box-shadow: 5px 5px 0 var(--blue);
+    font-size: 0.75rem;
+    font-weight: 800;
+  }
+
+  .tinychaos-credit a {
+    color: inherit;
+    font-family: var(--utility);
+    font-weight: 900;
+    text-underline-offset: 0.2em;
   }
 
   .instructions p:first-child {
@@ -992,6 +1024,11 @@
       flex-direction: column;
       gap: 5px;
       padding: 11px 14px;
+    }
+
+    .tinychaos-credit {
+      align-items: flex-start;
+      flex-direction: column;
     }
   }
 
