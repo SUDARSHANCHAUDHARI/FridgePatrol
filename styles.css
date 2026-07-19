@@ -948,7 +948,10 @@
   }
 
   .fridge-handle:focus-visible {
-    outline-offset: 7px;
+    outline-offset: 4px;
+    box-shadow:
+      0 0 0 4px var(--paper),
+      0 0 0 12px var(--ink);
   }
 
   @media (max-width: 720px) {

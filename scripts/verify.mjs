@@ -90,6 +90,27 @@ async function verify() {
   assert(css.includes("prefers-reduced-motion: reduce"), "Missing reduced-motion support");
   assert(css.includes("@media (max-width:"), "Missing responsive breakpoint");
 
+  const sharedTokens = {
+    ink: "#15152a",
+    paper: "#fff5df",
+    coral: "#ff5d5d",
+    blue: "#4f7cff",
+    butter: "#ffd166",
+    mint: "#58d6a9",
+    lilac: "#b695ff",
+  };
+  Object.entries(sharedTokens).forEach(([token, value]) => {
+    assert(css.includes(`--${token}: ${value};`), `Missing exact ${token} token`);
+  });
+  assert(html.includes("FridgePatrol · by Sudarshan Chaudhari"), "Missing author attribution");
+  assert(/--outline:\s*4px solid var\(--blue\)/.test(css), "Focus outline is not TinyChaos blue");
+  assert(/:focus-visible\s*\{[^}]*outline:\s*var\(--outline\)/s.test(css), "Focusable elements do not use the blue outline token");
+  assert(
+    /\.fridge-handle:focus-visible\s*\{[^}]*box-shadow:[^}]*var\(--paper\)[^}]*var\(--ink\)/s.test(css),
+    "Fridge handle focus halo is missing",
+  );
+  assert(!/min-width:\s*320px/.test(css), "Page-level 320px minimum blocks zoom reflow");
+
   assert(javascript.includes('addEventListener("pointerdown"'), "Missing pointer interaction");
   assert(javascript.includes('addEventListener("click"'), "Missing click interaction");
   assert(javascript.includes("localStorage"), "Missing persistent preferences");
